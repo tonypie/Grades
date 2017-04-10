@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E52D00C5-F51F-4666-BA05-9EBBD3804624}</ProjectGuid>
+    <ProjectGuid>{67F714BC-6F4D-4703-80BC-DAB6D858C08F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Grades</RootNamespace>
     <AssemblyName>Grades</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -45,14 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GradeBook.cs" />
-    <Compile Include="GradeTracker.cs" />
-    <Compile Include="IGradeTracker.cs" />
     <Compile Include="NameChangedDelegate.cs" />
     <Compile Include="NameChangedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statistics.cs" />
-    <Compile Include="ThrowAwayGradeBook.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

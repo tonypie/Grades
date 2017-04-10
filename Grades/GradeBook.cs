@@ -7,17 +7,38 @@ using System.Threading.Tasks;
 
 namespace Grades
 {
-    public class GradeBook : GradeTracker
+    public class GradeBook
     {
-        //Had to change for ThrowAwayGradeBook to be able to have access
-        //private List<float> grades;
-        
-        //Moved to abstract class GradeTracker
-        //protected List<float> grades;
-        //private string _name;
-        //public event NameChangedDelegate ncd;
+        private List<float> grades;
+        private string _name;
+        public event NameChangedDelegate ncd;
 
-        public override void WriteGrades(TextWriter destination)
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (String.IsNullOrEmpty(value))
+                    throw new ArgumentException("Name cannot be null or empty");
+
+                //if (!String.IsNullOrEmpty(value))
+                //{
+                if (_name != value && ncd != null)
+                {
+                    NameChangedEventArgs args = new NameChangedEventArgs();
+                    args.existingName = _name;
+                    args.newName = value;
+                    ncd(this, args);
+                    _name = value;
+                }
+                //}
+            }
+        }
+
+        public void WriteGrades(TextWriter destination)
         {
             for (int i = 0; i < grades.Count; i++)
             {
@@ -31,14 +52,13 @@ namespace Grades
             _name = "Empty";
         }
 
-        public override void AddGrade(float g)
+        public void AddGrade(float g)
         {
             grades.Add(g);
         }
 
-        public override Statistics GetStatistics()
+        public Statistics GetStatistics()
         {
-            Console.WriteLine("GradeBook::ComputeStatistics");
             Statistics s = new Statistics();
 
             foreach (float f in grades)
